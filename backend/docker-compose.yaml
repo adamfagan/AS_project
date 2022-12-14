@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  model-server-mushrooms:
+    container_name: model-server-mushrooms
+    build: ./model-server-mushrooms
+    ports:
+      - "18000:8000"
+    command: gunicorn -w 1 -b :8000 app:app
+
+  model-server-cifar:
+    container_name: model-server-cifar
+    build: ./model-server-cifar
+    ports:
+      - "28000:8000"
+    command: gunicorn -w 1 -b :8000 app:app
+
+  model-server-flowers:
+    container_name: model-server-flowers
+    build: ./model-server-flowers
+    ports:
+      - "38000:8000"
+    command: gunicorn -w 1 -b :8000 app:app
+
+  web-server:
+    container_name: web-server
+    build: ./web-server
+    ports:
+      - 8080:80
